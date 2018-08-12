@@ -8,24 +8,20 @@ const ms = require('ms');
 const moment = require('moment');
 client.on(`ready`, () => console.log(`Ready!`))
 
-client.on('message', async message => {
-  if(message.content.startsWith(prefix + "voicesetup")) {
-  if(!message.guild.member(message.author).hasPermissions('MANAGE_CHANNELS')) return message.reply(':x: **ليس لديك الصلاحيات الكافية**');
-  if(!message.guild.member(client.user).hasPermissions(['MANAGE_CHANNELS','MANAGE_ROLES_OR_PERMISSIONS'])) return message.reply(':x: **ليس معي الصلاحيات الكافية**');
-  var args = message.content.split(' ').slice(1).join(' ');
-  if(args && !args.includes(0)) return message.channel.send(':negative_squared_cross_mark: » فشل اعداد الروم الصوتي .. __يجب عليك كتابة 0 في اسم الروم__');
-  if(!args) args = `VoiceOnline: [ ${message.guild.members.filter(s => s.voiceChannel).size} ]`;
-  message.channel.send(':white_check_mark: » تم عمل الروم الصوتي بنجاح');
-  message.guild.createChannel(`${args.replace(0, message.guild.members.filter(s => s.voiceChannel).size)}`, 'voice').then(c => {
-    c.overwritePermissions(message.guild.id, {
+client.on('message',async Epic => {
+  var codes = "R!";
+  if(Epic.content.startsWith(codes + "vonline")) {
+  if(!Epic.guild.member(Epic.author).hasPermissions('MANAGE_CHANNELS')) return Epic.reply(':x: **ليس لديك الصلاحيات الكافية**');
+  if(!Epic.guild.member(client.user).hasPermissions(['MANAGE_CHANNELS','MANAGE_ROLES_OR_PERMISSIONS'])) return Epic.reply(':x: **ليس معي الصلاحيات الكافية**');
+  Epic.guild.createChannel(`Voice Online : [ ${Epic.guild.members.filter(m => m.voiceChannel).size} ]` , 'voice').then(c => { 
+    console.log(`Voice Online Is Activation In ${Epic.guild.name}`);
+    c.overwritePermissions(Epic.guild.id, {
       CONNECT: false,
       SPEAK: false
     });
     setInterval(() => {
-      c.setName(`${args.replace(0, message.guild.members.filter(s => s.voiceChannel).size)}`).catch(err => {
-        if(err) return;
-      });
-    },10000);
+      c.setName(` Online :  ${Epic.guild.members.filter(m => m.voiceChannel).size} .`)
+    },1000);
   });
   }
 });
