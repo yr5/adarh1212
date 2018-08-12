@@ -25,7 +25,7 @@ client.on('message', async message => {
       c.setName(`${args.replace(0, message.guild.members.filter(s => s.voiceChannel).size)}`).catch(err => {
         if(err) return;
       });
-    },3000);
+    },10000);
   });
   }
 });
