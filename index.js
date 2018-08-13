@@ -311,9 +311,9 @@ client.on('message',function(message) {
        if(!muteRole) return message.guild.createRole({name: 'Muted'}).then(message.guild.channels.forEach(chan => chan.overwritePermissions(muteRole, {SEND_MESSAGES:false,ADD_REACTIONS:false})));
        if(!message.guild.member(message.author).hasPermission("MANAGE_ROLES")) return message.channel.send('ℹ **Error:** ``خصائص مفقودة``');
        if(!message.guild.member(client.user).hasPermission("MANAGE_ROLES")) return message.channel.send('ℹ **Error:** ``خصائص مفقودة مني``');
-       
-       if(!muteMember) return message.channel.send('ℹ **Error:** ``منشن شخص``');
        let muteMember = message.mentions.members.first();
+       if(!muteMember) return message.channel.send('ℹ **Error:** ``منشن شخص``');
+       
        let muteReason = messageArray[2];
        if(!muteReason) return message.channel.send('ℹ **Error:** ``حدد سباّ``');
        let muteDuration = messageArray[3];
