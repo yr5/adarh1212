@@ -12,7 +12,7 @@ client.on(`ready`, () => console.log(`Ready!`))
 var guilds = {};
 client.on('guildBanAdd', function(guild) {
             const rebellog = client.channels.find("name", "log"),
-            Onumber = 3,
+            Onumber = 1,
   Otime = 10000
 guild.fetchAuditLogs({
     type: 22
