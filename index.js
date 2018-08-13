@@ -54,7 +54,7 @@ console.log(error)
   client.on('channelCreate', async (channel) => {
   const rebellog = client.channels.find("name", "log"),
   Oguild = channel.guild,
-  Onumber = 3,
+  Onumber = 1,
   Otime = 10000;
   const audit = await channel.guild.fetchAuditLogs({limit: 1});
   const channelcreate = audit.entries.first().executor;
@@ -118,7 +118,7 @@ client.on('message',async Epic => {
       SPEAK: false
     });
     setInterval(() => {
-      c.setName(` Online :  ${Epic.guild.members.filter(m => m.voiceChannel).size} .`)
+      c.setName(` 𝓡 𝐒𝐐𝐔𝐀𝐃 :  ${Epic.guild.members.filter(m => m.voiceChannel).size} .`)
     },1000);
   });
   }
