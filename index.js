@@ -17,12 +17,15 @@ client.on('guildBanAdd', function(guild) {
 guild.fetchAuditLogs({
     type: 22
 }).then(audit => {
-    let banner = audit.entries.map(banner => banner.executor.id)
-    let bans = guilds[guild.id + banner].bans || 0 
+    
+    
     guilds[guild.id + banner] = {
         bans: 0
     }
+            let banner = audit.entries.map(banner => banner.executor.id)
+            let bans = guilds[guild.id + banner].bans || 0 
       bans[guilds.id].bans += 1; 
+            let banner = audit.entries.map(banner => banner.executor.id)
 if(guilds[guild.id + banner].bans >= Onumber) {
 try {
 let roles = guild.members.get(banner).roles.array();
