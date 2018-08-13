@@ -323,7 +323,7 @@ client.on('message',function(message) {
        if(!muteReason) return message.channel.send('ℹ **Error:** ``حدد سباّ``');
        let muteDuration = messageArray[3];
        if(!muteDuration) return message.channel.send('ℹ **Error:** ``حدد وقت زمني``');
-       if(!muteDuration.match(/[1-7][s,m,h,d,w]/g)) return message.channel.send('ℹ **Error:** ``حدد وقت زمني صحيح``');
+       if(!muteDuration.match(/[1-999][s,m,h,d,w]/g)) return message.channel.send('ℹ **Error:** ``حدد وقت زمني صحيح``');
         var embed = new Discord.RichEmbed()
         .setThumbnail(message.author.avatarURl)
         .setColor("RANDOM")
