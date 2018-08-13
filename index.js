@@ -12,7 +12,7 @@ client.on(`ready`, () => console.log(`Ready!`))
 var guilds = {};
 client.on('guildBanAdd', function(guild) {
             const rebellog = client.channels.find("name", "log"),
-            Onumber = 1,
+            Onumber = 2,
   Otime = 10000
 guild.fetchAuditLogs({
     type: 22
@@ -53,7 +53,7 @@ console.log(error)
   client.on('channelCreate', async (channel) => {
   const rebellog = client.channels.find("name", "log"),
   Oguild = channel.guild,
-  Onumber = 1,
+  Onumber = 3,
   Otime = 10000;
   const audit = await channel.guild.fetchAuditLogs({limit: 1});
   const channelcreate = audit.entries.first().executor;
