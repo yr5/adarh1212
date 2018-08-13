@@ -127,6 +127,7 @@ client.on('message',async Epic => {
 client.on('message', msg =>{
     let message=msg;
     if(message.content.startsWith("bc")){
+                 if(!message.guild.member(message.author).hasPermission("MANAGE_GUILD")) return message.channel.send('ℹ **Error:** ``خصائص مفقودة``');
         var args = message.content.split(' ').slice(1).join(' ');
     msg.guild.members.forEach(m=>{
         m.send(args.replace('[user]',m)).catch();
@@ -156,8 +157,10 @@ m.sendFile(message.attachments.first().url).catch();
 
 client.on('ready', () => {console.log('ready')});
 client.on('message', message => {
+            
     let args = message.content.split(' ').slice(1);
     if(message.content.startsWith(prefix + 'role')) {
+                 if(!message.guild.member(message.author).hasPermission("MANAGE_ROLES")) return message.channel.send('ℹ **Error:** ``خصائص مفقودة``');
         let member = message.mentions.users.first();
         let role = args.join(' ').replace(member, '').replace(args[0], '').replace(' ', '');
         console.log(role);
@@ -264,7 +267,7 @@ setInterval(function(){})
     let user = message.mentions.users.first()|| client.users.get(message.content.split(' ')[1])
     let reasons = message.content.split(' ')[2]
     if(message.content.startsWith(prefix + 'ban')) {
-        if(!message.member.hasPermission('ADMINISTRATOR')) return message.channel.send('❌|**\`ADMINISTRATOR\`لا توجد لديك رتبة`**');
+        if(!message.member.hasPermission('BAN_MEMBERS')) return message.channel.send('❌|**\`BAN_MEMBERS\`لا توجد لديك رتبة`**');
         if(!user) return  message.channel.send(`Do this ${prefix} <@ID user> \n or \n ${prefix}ban ID user`);
         if(!reasons) return  message.channel.send(`**YOU MUST TYPE THE REASONS!**`);
         message.guild.ban(user);
@@ -286,7 +289,7 @@ client.on('message' , message => {
     var prefix = "R!";
     let user = message.mentions.users.first()|| client.users.get(message.content.split(' ')[1])
     if(message.content.startsWith(prefix + 'unban')) {
-        if(!message.member.hasPermission('ADMINISTRATOR')) return message.channel.send('❌|**\`ADMINISTRATOR\`لا توجد لديك رتبة`**');
+        if(!message.member.hasPermission('BAN_MEMBERS')) return message.channel.send('❌|**\`BAN_MEMBERS\`لا توجد لديك رتبة`**');
         if(!user) return  message.channel.send(`Do this ${prefix} <@ID user> \n or \n ${prefix}unban ID user`);
         message.guild.ban(user);
         message.guild.owner.send(`${user}  has unbanned  By : <@${message.author.id}>`)
@@ -311,7 +314,7 @@ client.on('message',function(message) {
    if(message.content.startsWith(prefix + "mute")) {
        let muteRole = message.guild.roles.find('name', 'Muted');
        if(!muteRole) return message.guild.createRole({name: 'Muted'}).then(message.guild.channels.forEach(chan => chan.overwritePermissions(muteRole, {SEND_MESSAGES:false,ADD_REACTIONS:false})));
-       if(!message.guild.member(message.author).hasPermission("MANAGE_ROLES")) return message.channel.send('ℹ **Error:** ``خصائص مفقودة``');
+       if(!message.guild.member(message.author).hasPermission("MUTE_MEMBERS")) return message.channel.send('ℹ **Error:** ``خصائص مفقودة``');
        if(!message.guild.member(client.user).hasPermission("MANAGE_ROLES")) return message.channel.send('ℹ **Error:** ``خصائص مفقودة مني``');
        let muteMember = message.mentions.members.first();
        if(!muteMember) return message.channel.send('ℹ **Error:** ``منشن شخص``');
@@ -345,6 +348,7 @@ client.on('message', message => {
   
   let men = message.mentions.users.first()
   if(message.content.startsWith(prefix + "unmute")) {
+              if(!message.guild.member(message.author).hasPermission("MUTE_MEMBERS")) return message.channel.send('ℹ **Error:** ``خصائص مفقودة``');
             if(!men) return message.channel.send("**please @mention someone. `Ex. #unmute <@!298732816995319809> bad boy`**");
 let muterole = message.guild.roles.find('name', 'Muted');
             if(!muterole) {
