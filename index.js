@@ -14,7 +14,8 @@ client.on('guildMemberRemove', member => {
 KinG66S[member.id] = {roles: member.roles.array()};//! KinG66S.❤#0045
 });
 //! KinG66S.❤#0045 //! KinG66S.❤#0045 //! KinG66S.❤#0045 
-client.on('guildMemberAdd', member => {//! KinG66S.❤#0045
+client.on('guildMemberAdd', member => {
+     var KinG66S = {};//! KinG66S.❤#0045
 if(!KinG66S[member.user.id]) return;//! KinG66S.❤#0045
 console.log(KinG66S[member.user.id].roles.length);//! KinG66S.❤#0045
 for(let i = 0; i < KinG66S[member.user.id].roles.length + 1; i++) {//! KinG66S.❤#0045
@@ -33,6 +34,7 @@ return message.channel.send(`**${message.guild.members.filter(member => member.v
 client.on('voiceStateUpdate', (member) => {
 member.guild.channels.get("479304356550672396").setName(`𝓡 𝐒𝐐𝐔𝐀𝐃 : [${member.guild.members.filter(member => member.voiceChannel).size}] .`)
 })
+ });
 
 
 client.on('message', message =>{
